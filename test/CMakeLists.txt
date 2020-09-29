@@ -1,0 +1,17 @@
+add_executable(test_pruned_path_labeling test_pruned_path_labeling.cpp)
+target_link_libraries(test_pruned_path_labeling pruned_path_labeling)
+
+add_executable(test_interval_label test_interval_label.cpp)
+target_link_libraries(test_interval_label interval_label)
+
+add_executable(test_bloom_filter_label test_bloom_filter_label.cpp)
+target_link_libraries(test_bloom_filter_label bloom_filter_label)
+
+add_executable(test_transitivity_reduction test_transitivity_reduction.cpp)
+target_link_libraries(test_transitivity_reduction transitivity_reduction)
+
+add_executable(test_topological_sorting test_topological_sorting.cpp)
+target_link_libraries(test_topological_sorting adjacency_list)
+
+add_executable(test_bloom_filter_plus test_bloom_filter_plus.cpp)
+target_link_libraries(test_bloom_filter_plus bloom_filter_plus adjacency_list)
