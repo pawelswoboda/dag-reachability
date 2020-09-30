@@ -67,6 +67,8 @@ namespace TR {
                     s.pop();
                     if(push_no == 0)
                     {
+                        if(visited[i] == true)
+                            continue;
                         s.push({i,1});
 
                         visited[i] = true;
@@ -83,6 +85,7 @@ namespace TR {
         }
 
         std::reverse(order.begin(), order.end());
+        assert(order.size() == nr_nodes());
         return order;
     }
 
