@@ -43,6 +43,8 @@ namespace TR {
 
     std::vector<size_t> adjacency_list::topological_sorting() const
     {
+        assert(is_dag());
+
         struct topo_node {
             size_t v : 63;
             size_t push_no : 1;
@@ -101,5 +103,35 @@ namespace TR {
                     [&](const size_t j, const size_t k) { return inv_topo[j] < inv_topo[k]; });
 
         }
+    }
+
+    bool adjacency_list::is_dag() const
+    {
+        std::vector<size_t> in_degree(nr_nodes(), 0);
+        for(size_t i=0; i<nr_nodes(); ++i)
+            for(auto arc_it=begin(i); arc_it!=end(i); ++arc_it)
+                in_degree[*arc_it]++;
+
+        std::stack<size_t> s; // queue with nodes with in-degree zero
+        for(size_t i=0; i<nr_nodes(); ++i)
+            if(in_degree[i] == 0)
+                s.push(i);
+
+        size_t visited_nodes = 0;
+        while(!s.empty())
+        {
+            const size_t i = s.top();
+            s.pop();
+            visited_nodes++;
+
+            for(auto arc_it=begin(i); arc_it!=end(i); ++arc_it)
+            {
+                in_degree[*arc_it]--;
+                if(in_degree[*arc_it] == 0)
+                    s.push(*arc_it);
+            } 
+        }
+
+        return visited_nodes == nr_nodes();
     }
 }

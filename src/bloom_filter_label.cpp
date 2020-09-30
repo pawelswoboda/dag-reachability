@@ -159,6 +159,8 @@ namespace TR {
 
     void bloom_filter_label::create_index(const adjacency_list& adj, const adjacency_list& inv_adj)
     {
+        assert(adj.is_dag());
+        assert(inv_adj.is_dag());
         assert(adj.nr_nodes() == inv_adj.nr_nodes());
         const auto [vp,vr] = vertex_partition(adj, inv_adj, adj.nr_nodes()/20+1);
 

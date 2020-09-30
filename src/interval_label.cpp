@@ -9,11 +9,15 @@ namespace TR {
     interval_label::interval_label(const adjacency_list& adj, const adjacency_list& inv_adj)
         : g(rd())
     {
-compute_discovery_and_finish_time(adj, inv_adj);
+        compute_discovery_and_finish_time(adj, inv_adj);
     } 
 
     void interval_label::compute_discovery_and_finish_time(const adjacency_list& adj, const adjacency_list& inv_adj)
     {
+        assert(adj.is_dag());
+        assert(inv_adj.is_dag());
+        assert(adj.nr_nodes() == inv_adj.nr_nodes());
+
         times.clear();
         times.resize(adj.nr_nodes());
         std::vector<size_t> roots;

@@ -26,6 +26,8 @@ namespace TR {
             std::vector<size_t> topological_sorting() const;
             void sort_arcs_topologically();
 
+            bool is_dag() const;
+
         private:
             std::vector<size_t> arcs;
             std::vector<size_t> node_offsets;

@@ -10,6 +10,9 @@ target_link_libraries(test_bloom_filter_label bloom_filter_label)
 add_executable(test_transitivity_reduction test_transitivity_reduction.cpp)
 target_link_libraries(test_transitivity_reduction transitivity_reduction)
 
+add_executable(test_dag test_dag.cpp)
+target_link_libraries(test_dag adjacency_list)
+
 add_executable(test_topological_sorting test_topological_sorting.cpp)
 target_link_libraries(test_topological_sorting adjacency_list)
 
